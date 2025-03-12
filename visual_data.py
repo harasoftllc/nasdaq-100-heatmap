@@ -1,7 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
 import squarify
-import numpy as np
 
 # Load data from CSV
 df = pd.read_csv('nasdaq100_data.csv')
@@ -12,66 +11,86 @@ df = df.sort_values('market_cap', ascending=False).reset_index(drop=True)
 # Define colors gradient based on performance
 def gradient_color(change):
     if change > 0:
-        # Green gradient
-        return f'rgba(0,{int(100 + 155 * (min(change,5)/5))},0,0.9)'
+        green_intensity = int(100 + 155 * min(change, 3)/3)
+        return f'rgba(0,{green_intensity},0,0.9)'
     elif change < 0:
-        # Red gradient
-        return f'rgba({int(100 + 155 * (min(abs(change),5)/5))},0,0,0.9)'
+        red_intensity = int(100 + 155 * min(abs(change), 3)/3)
+        return f'rgba({red_intensity},0,0,0.9)'
     else:
-        # Neutral color for zero change
-        return 'rgba(128,128,128,0.6)'
+        return 'rgba(128,128,128,0.8)'
 
 df['color'] = df['percent_change'].apply(gradient_color)
 
-# Normalize sizes for squarify
+# Normalize sizes and get rectangles
 sizes = squarify.normalize_sizes(df['market_cap'], 100, 100)
 rects = squarify.squarify(sizes=sizes, x=0, y=0, dx=100, dy=100)
 
-# Create plotly heatmap figure
+# Initialize plotly figure
 fig = go.Figure()
 
+# Add rectangles and labels
 for idx, rect in enumerate(rects):
     ticker = df.loc[idx, 'ticker']
     percent = df.loc[idx, 'percent_change']
     market_cap = df.loc[idx, 'market_cap']
     color = df.loc[idx, 'color']
 
-    # Adaptive font sizing
+    # Adaptive font sizing for readability
     rect_area = rect['dx'] * rect['dy']
-    font_size = max(min(rect_area * 0.3, 24), 10)
+    font_size = max(min(rect_area * 0.3, 20), 8)
 
     # Rectangle shapes
-    fig.add_shape(
-        type="rect",
-        x0=rect['x'],
-        y0=rect['y'],
-        x1=rect['x'] + rect['dx'],
-        y1=rect['y'] + rect['dy'],
-        line=dict(color="white", width=1),
-        fillcolor=color,
-    )
+    fig.add_shape(type="rect",
+                  x0=rect['x'], y0=rect['y'],
+                  x1=rect['x'] + rect['dx'], y1=rect['y'] + rect['dy'],
+                  line=dict(color="white", width=1),
+                  fillcolor=color)
 
-    # Ticker Labels added to rectangles
+    # Add visible labels with good contrast
     fig.add_trace(go.Scatter(
         x=[rect['x'] + rect['dx']/2],
         y=[rect['y'] + rect['dy']/2],
-        text=f"{ticker}<br>{percent}%",
+        text=f"{ticker}<br>{percent:+.2f}%",
         mode="text",
-        textfont=dict(color="white", size=font_size),
+        textfont=dict(color='white', size=font_size),
         hoverinfo="text",
-        hovertext=f"{ticker}<br>Change: {percent}%<br>Market Cap: ${market_cap:,.0f}"
+        hovertext=f"<b>{ticker}</b><br>Change: {percent:+.2f}%<br>Market Cap: ${market_cap:,.0f}"
     ))
 
+# Create the Plotly figure object
+fig = go.Figure(fig.data, fig.layout)
+
+# Layout refinements for Finviz look
 fig.update_layout(
     title="NASDAQ-100 Daily Performance Heatmap",
-    plot_bgcolor='black',
-    paper_bgcolor='black',
+    title_font=dict(color='white', size=20),
+    title_x=0.5,
+    plot_bgcolor='#121212',
+    paper_bgcolor='#121212',
     margin=dict(l=5, r=5, t=40, b=5),
-    xaxis=dict(showgrid=False, visible=False),
-    yaxis=dict(showgrid=False, visible=False),
+    xaxis=dict(visible=False),
+    yaxis=dict(showgrid=False, visible=False, autorange='reversed'),
     showlegend=False,
 )
 
-fig.update_yaxes(autorange="reversed")
+# Create color scale legend (like Finviz)
+legend_labels = ["-3%", "-2%", "-1%", "0%", "+1%", "+2%", "+3%"]
+legend_colors = [gradient_color(i) for i in [-3, -2, -1, 0, 1, 2, 3]]
 
-fig.show()
+# Legend rectangles and annotations
+for i, label in enumerate(legend_colors):
+    fig.add_shape(
+        type="rect", x0=5 + i*14, y0=-5, x1=(i+1)*12, y1=-1,
+        fillcolor=legend_colors[i], line=dict(width=0)
+    )
+    fig.add_annotation(
+        x=(i * 12) + 6, y=-3.5,
+        text=legend_colors[i],
+        showarrow=False, font=dict(color="white", size=12)
+    )
+
+fig.update_xaxes(showgrid=False, zeroline=False, visible=False)
+fig.update_yaxes(showgrid=False, zeroline=False, visible=False, autorange="reversed")
+
+# Display the figure reliably as HTML
+fig.write_html('nasdaq_heatmap.html', auto_open=True)
