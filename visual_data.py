@@ -61,8 +61,8 @@ for idx, rect in enumerate(rects):
     
     # OPTIONAL: Add a shadow (darker offset text) behind the main text
     fig.add_trace(go.Scatter(
-        x=[rect['x'] + rect['dx']/2 + 0.15],  # small offset
-        y=[rect['y'] + rect['dy']/2 + 0.15],
+        x=[rect['x'] + rect['dx']/2 + 0.1],  # small offset
+        y=[rect['y'] + rect['dy']/2 + 0.1],
         text=f"{ticker}<br>{percent:+.2f}%",
         mode="text",
         textfont=dict(color='rgba(0,0,0,0.5)', size=font_size),
