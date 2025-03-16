@@ -9,11 +9,32 @@ df = pd.read_csv('nasdaq100_data.csv')
 df = df.sort_values('market_cap', ascending=False).reset_index(drop=True)
 
 # ---------------------------------------
-# 2) DEFINE A COLOR GRADIENT FUNCTION
+# 2) HELPER: FORMAT MARKET CAP
+# ---------------------------------------
+def format_market_cap(value):
+    """
+    Converts a large numeric market cap to a shorter human-readable string:
+      e.g. 3,207,068,385,280 -> '$3.21T'
+           812,345,678      -> '$0.81B'
+           12,345,678       -> '$12.35M'
+           123,456          -> '$123,456' (for < 1 million)
+    """
+    abs_val = abs(value)
+    if abs_val >= 1_000_000_000_000:  # trillion
+        return f"${value/1_000_000_000_000:.2f}T"
+    elif abs_val >= 1_000_000_000:    # billion
+        return f"${value/1_000_000_000:.2f}B"
+    elif abs_val >= 1_000_000:        # million
+        return f"${value/1_000_000:.2f}M"
+    else:
+        # below a million, just format with commas
+        return f"${value:,.0f}"
+
+# ---------------------------------------
+# 3) DEFINE COLOR GRADIENT FUNCTION
 # ---------------------------------------
 def gradient_color(change):
     """Returns an RGBA color based on percent_change."""
-    # Clamp change to -3%...+3% for coloring
     if change > 0:
         green_intensity = int(100 + 155 * min(change, 3)/3)
         return f'rgba(0,{green_intensity},0,0.9)'
@@ -27,13 +48,13 @@ def gradient_color(change):
 df['color'] = df['percent_change'].apply(gradient_color)
 
 # ---------------------------------------
-# 3) SQUARIFY TO GET RECTANGLE COORDS
+# 4) SQUARIFY TO GET RECTANGLE COORDS
 # ---------------------------------------
 sizes = squarify.normalize_sizes(df['market_cap'], 100, 100)
 rects = squarify.squarify(sizes, x=0, y=0, dx=100, dy=100)
 
 # ---------------------------------------
-# 4) BUILD FIGURE & ADD RECTANGLES
+# 5) BUILD FIGURE & ADD RECTANGLES
 # ---------------------------------------
 fig = go.Figure()
 
@@ -43,11 +64,11 @@ for idx, rect in enumerate(rects):
     market_cap = df.loc[idx, 'market_cap']
     color = df.loc[idx, 'color']
     
-    # Adaptive font sizing based on rectangle area
+    # Adaptive font sizing
     rect_area = rect['dx'] * rect['dy']
     font_size = max(min(rect_area * 0.3, 20), 9)
     
-    # Draw rectangle BELOW the text
+    # Draw rectangle (layer='below' keeps it behind text)
     fig.add_shape(
         type="rect",
         x0=rect['x'],
@@ -56,21 +77,21 @@ for idx, rect in enumerate(rects):
         y1=rect['y'] + rect['dy'],
         line=dict(color="white", width=1),
         fillcolor=color,
-        layer='below'  # ensures shapes go underneath text
+        layer='below'
     )
     
-    # OPTIONAL: Add a shadow (darker offset text) behind the main text
+    # OPTIONAL shadow text (slightly offset, darker color) for better readability
     fig.add_trace(go.Scatter(
-        x=[rect['x'] + rect['dx']/2 + 0.1],  # small offset
+        x=[rect['x'] + rect['dx']/2 + 0.1],
         y=[rect['y'] + rect['dy']/2 + 0.1],
         text=f"{ticker}<br>{percent:+.2f}%",
         mode="text",
         textfont=dict(color='rgba(0,0,0,0.5)', size=font_size),
-        hoverinfo="none",  # no hover for the shadow
+        hoverinfo="none",
         showlegend=False
     ))
     
-    # Main text in white, centered
+    # Main white text
     fig.add_trace(go.Scatter(
         x=[rect['x'] + rect['dx']/2],
         y=[rect['y'] + rect['dy']/2],
@@ -81,13 +102,13 @@ for idx, rect in enumerate(rects):
         hovertext=(
             f"<b>{ticker}</b><br>"
             f"Change: {percent:+.2f}%<br>"
-            f"Market Cap: ${market_cap:,.0f}"
+            f"Market Cap: {format_market_cap(market_cap)}"
         ),
         showlegend=False
     ))
 
 # ---------------------------------------
-# 5) LAYOUT & AXES
+# 6) LAYOUT & AXES
 # ---------------------------------------
 fig.update_layout(
     title="NASDAQ-100 Daily Performance Heatmap",
@@ -101,16 +122,15 @@ fig.update_layout(
 )
 
 # ---------------------------------------
-# 6) FINVIZ-STYLE COLOR SCALE LEGEND
+# 7) FINVIZ-STYLE COLOR SCALE LEGEND
 # ---------------------------------------
 legend_labels = ["-3%", "-2%", "-1%", "0%", "+1%", "+2%", "+3%"]
 legend_values = [-3, -2, -1, 0, 1, 2, 3]
 legend_colors = [gradient_color(v) for v in legend_values]
 
-# Positioning for the legend squares
 box_width = 10
 box_height = 4
-legend_y = -8  # negative means it's below the main chart; adjust as needed
+legend_y = -8  # adjust if you need more room
 
 for i, color in enumerate(legend_colors):
     x0 = 5 + i*(box_width + 2)
@@ -118,16 +138,14 @@ for i, color in enumerate(legend_colors):
     y0 = legend_y
     y1 = y0 + box_height
     
-    # Colored rectangle
     fig.add_shape(
         type="rect",
         x0=x0, y0=y0,
         x1=x1, y1=y1,
         fillcolor=color,
         line=dict(width=0),
-        layer='above'  # these small boxes can be above or below
+        layer='above'
     )
-    # Corresponding label
     fig.add_annotation(
         x=(x0 + x1)/2,
         y=(y0 + y1)/2,
@@ -142,6 +160,6 @@ fig.update_xaxes(showgrid=False, zeroline=False, visible=False)
 fig.update_yaxes(showgrid=False, zeroline=False, visible=False, autorange="reversed")
 
 # ---------------------------------------
-# 7) WRITE TO HTML
+# 8) WRITE TO HTML
 # ---------------------------------------
 fig.write_html('nasdaq_heatmap.html', auto_open=True)
