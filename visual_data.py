@@ -150,7 +150,7 @@ fig.add_annotation(
     yref='paper',
     text="© Harasoft LLC",
     showarrow=False,
-    font=dict(size=22, color="white"),
+    font=dict(size=20, color="white"),
     xanchor='left',
     yanchor='bottom',
     opacity=0.7
