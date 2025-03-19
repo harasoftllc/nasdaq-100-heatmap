@@ -1,6 +1,11 @@
+import fetch_data  # Import your data-fetching module
 import pandas as pd
 import plotly.graph_objects as go
 import squarify
+
+# Update the CSV with fresh NASDAQ-100 data
+nasdaq_df = fetch_data.fetch_nasdaq_data(fetch_data.nasdaq_100_tickers)
+nasdaq_df.to_csv('nasdaq100_data.csv', index=False)
 
 # 1) LOAD & PREPARE DATA
 df = pd.read_csv('nasdaq100_data.csv')
@@ -40,6 +45,7 @@ fig = go.Figure()
 
 for idx, rect in enumerate(rects):
     ticker = df.loc[idx, 'ticker']
+    full_name = df.loc[idx, 'full_name']  # New column with full company name
     percent = df.loc[idx, 'percent_change']
     market_cap = df.loc[idx, 'market_cap']
     color = df.loc[idx, 'color']
@@ -47,7 +53,7 @@ for idx, rect in enumerate(rects):
     rect_area = rect['dx'] * rect['dy']
     font_size = max(min(rect_area * 0.3, 20), 9)
     
-    # Rectangle
+    # Draw rectangle
     fig.add_shape(
         type="rect",
         x0=rect['x'], y0=rect['y'],
@@ -57,7 +63,7 @@ for idx, rect in enumerate(rects):
         layer='below'
     )
     
-    # Shadow text
+    # Shadow text for readability
     fig.add_trace(go.Scatter(
         x=[rect['x'] + rect['dx']/2 + 0.1],
         y=[rect['y'] + rect['dy']/2 + 0.1],
@@ -68,7 +74,7 @@ for idx, rect in enumerate(rects):
         showlegend=False
     ))
     
-    # Main white text
+    # Main white text with updated hovertext that includes the full company name
     fig.add_trace(go.Scatter(
         x=[rect['x'] + rect['dx']/2],
         y=[rect['y'] + rect['dy']/2],
@@ -77,7 +83,7 @@ for idx, rect in enumerate(rects):
         textfont=dict(color='white', size=font_size),
         hoverinfo="text",
         hovertext=(
-            f"<b>{ticker}</b><br>"
+            f"<b>{ticker} - {full_name}</b><br>"
             f"Change: {percent:+.2f}%<br>"
             f"Market Cap: {format_market_cap(market_cap)}"
         ),
@@ -87,11 +93,10 @@ for idx, rect in enumerate(rects):
 # 6) LAYOUT & AXES
 fig.update_layout(
     title="NASDAQ-100 Daily Performance Heatmap",
-    title_font=dict(color='white', size=20),
+    title_font=dict(color='white', size=26),
     title_x=0.5,
     plot_bgcolor='#121212',
     paper_bgcolor='#121212',
-    # Equal margins for symmetry
     margin=dict(l=50, r=50, t=50, b=50),
     xaxis=dict(visible=False),
     yaxis=dict(showgrid=False, visible=False, autorange='reversed')
@@ -106,7 +111,7 @@ legend_colors = [gradient_color(v) for v in legend_values]
 box_width = 0.04
 box_height = 0.04
 start_x = 0.68   # left edge of the legend row
-start_y = 0.01   # bottom
+start_y = -0.02   # bottom
 
 for i, color in enumerate(legend_colors):
     x0 = start_x + i * box_width
@@ -137,19 +142,18 @@ for i, color in enumerate(legend_colors):
         yanchor='middle'
     )
 
-# 8) WATERMARK / BRANDING: BOTTOM-LEFT
+# 8) WATERMARK / BRANDING: LOWER-LEFT
 fig.add_annotation(
-    x=0.01,   # slightly in from the left
-    y=0.01,   # bottom
+    x=0.01,   # slightly in from the left edge
+    y=-0.01,  # aligned with the gradient legend
     xref='paper',
     yref='paper',
     text="© Harasoft LLC",
     showarrow=False,
-    font=dict(size=14, color="white"),
+    font=dict(size=22, color="white"),
     xanchor='left',
     yanchor='bottom',
     opacity=0.7
 )
 
-# 9) WRITE TO HTML
 fig.write_html('nasdaq_heatmap.html', auto_open=True)

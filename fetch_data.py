@@ -15,8 +15,7 @@ nasdaq_100_tickers = [
     'TMUS', 'TSLA', 'TTD', 'TTWO', 'TXN', 'VRSK', 'VRTX', 'WBD', 'WDAY', 'XEL', 'ZS'
 ]
 
-
-# Fetch NASDAQ-100 data
+# Fetch NASDAQ-100 data, including the full company name.
 def fetch_nasdaq_data(tickers):
     data = []
     tickers_str = ' '.join(tickers)
@@ -27,6 +26,8 @@ def fetch_nasdaq_data(tickers):
             stock = yf.Ticker(ticker)
             info = stock.info
             market_cap = info.get('marketCap', None)
+            # Retrieve full name (prefer 'longName' if available)
+            full_name = info.get('longName', info.get('shortName', ticker))
 
             # Get closing prices to calculate daily % change
             close_yesterday = stocks[ticker]['Close'].iloc[-2]
@@ -35,6 +36,7 @@ def fetch_nasdaq_data(tickers):
 
             data.append({
                 'ticker': ticker,
+                'full_name': full_name,
                 'market_cap': market_cap,
                 'percent_change': percent_change
             })
@@ -44,8 +46,7 @@ def fetch_nasdaq_data(tickers):
     df = pd.DataFrame(data).dropna()
     return df
 
-# Run and save the data
-nasdaq_df = fetch_nasdaq_data(nasdaq_100_tickers)
-nasdaq_df.to_csv('nasdaq100_data.csv', index=False)
+if __name__ == '__main__':
+    nasdaq_df = fetch_nasdaq_data(nasdaq_100_tickers)
+    nasdaq_df.to_csv('nasdaq100_data.csv', index=False)
 
-# print(nasdaq_df.head())
