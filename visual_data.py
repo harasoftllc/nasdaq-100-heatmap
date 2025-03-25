@@ -25,11 +25,17 @@ def format_market_cap(value):
 
 # 3) DEFINE COLOR GRADIENT
 def gradient_color(change):
+    # Clamp the change to a maximum of 3 (or -3 for negatives)
     if change > 0:
-        green_intensity = int(100 + 155 * min(change, 3)/3)
+        norm = min(change, 3) / 3
+        # Apply a non-linear scaling (exponent < 1 expands lower values)
+        norm = norm ** 0.8
+        green_intensity = round(100 + 155 * norm)
         return f'rgba(0,{green_intensity},0,0.9)'
     elif change < 0:
-        red_intensity = int(100 + 155 * min(abs(change), 3)/3)
+        norm = min(abs(change), 3) / 3
+        norm = norm ** 0.8
+        red_intensity = round(100 + 155 * norm)
         return f'rgba({red_intensity},0,0,0.9)'
     else:
         return 'rgba(128,128,128,0.8)'
