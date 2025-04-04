@@ -19,7 +19,7 @@ This project provides a dynamic visualization of daily percentage price changes 
 
 ## Project Structure
 
-```
+```bash
 nasdaq-heatmap/
 ├── fetch_data.py          # Fetch NASDAQ-100 data using Yahoo Finance API
 ├── visual_data.py         # Generate interactive heatmap visualization
@@ -65,4 +65,3 @@ This project is licensed under the [MIT License](LICENSE).
 ## Disclaimer
 
 This project is intended solely for educational purposes. It should not be used for trading or investment decisions.
-
