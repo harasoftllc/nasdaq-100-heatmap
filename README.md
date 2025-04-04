@@ -56,6 +56,8 @@ Open `nasdaq_heatmap.html` in a web browser to explore the interactive visualiza
 
 ## Sample Output
 
+April 3, 2025:
+
 ![NASDAQ-100 Heatmap Example](images/qqq_heatmap_sample.png)
 
 ## License
