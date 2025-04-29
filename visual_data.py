@@ -82,24 +82,25 @@ for idx, rect in enumerate(rects):
     
     # Main white text with updated hovertext that includes the full company name
     fig.add_trace(go.Scatter(
-        x=[rect['x'] + rect['dx']/2],
-        y=[rect['y'] + rect['dy']/2],
-        text=f"{ticker}<br>{percent:+.2f}%",
-        mode="text",
-        textfont=dict(color='white', size=font_size),
-        hoverinfo="text",
-        hovertext=(
-            f"<b>{ticker} - {full_name}</b><br>"
-            f"Change: {percent:+.2f}%<br>"
-            f"Market Cap: {format_market_cap(market_cap)}"
-        ),
-        showlegend=False
+    x=[rect['x'] + rect['dx']/2],
+    y=[rect['y'] + rect['dy']/2],
+    text=f"{ticker}<br>{percent:+.2f}%",
+    mode="text",
+    textfont=dict(color='white', size=font_size, family='Arial Black'),
+    hoverinfo="text",
+    hovertext=(
+        f"<b>{ticker} - {full_name}</b><br>"
+        f"Change: {percent:+.2f}%<br>"
+        f"Market Cap: {format_market_cap(market_cap)}"
+    ),
+    showlegend=False
     ))
+
 
 # 6) LAYOUT & AXES
 fig.update_layout(
     title="NASDAQ-100 Daily Performance Heatmap",
-    title_font=dict(color='white', size=26),
+    title_font=dict(color='white', size=26, family='Arial Black'),
     title_x=0.5,
     plot_bgcolor='#121212',
     paper_bgcolor='#121212',
