@@ -1,102 +1,96 @@
 ticker,full_name,market_cap,percent_change
-AAPL,Apple Inc.,3172817960960,0.51
-ABNB,"Airbnb, Inc.",77971955712,1.78
-ADBE,Adobe Inc.,158111678464,0.64
-ADI,"Analog Devices, Inc.",95559696384,-0.54
-ADP,"Automatic Data Processing, Inc.",120340234240,0.75
-ADSK,"Autodesk, Inc.",58125574144,0.52
-AEP,"American Electric Power Company, Inc.",57937698816,1.35
-AMAT,"Applied Materials, Inc.",121500557312,-0.82
-AMD,"Advanced Micro Devices, Inc.",156061958144,-0.34
-AMGN,Amgen Inc.,155144568832,1.93
-AMZN,"Amazon.com, Inc.",1988657676288,-0.17
-ANSS,"ANSYS, Inc.",28032798720,0.57
-APP,AppLovin Corporation,97746305024,1.37
-ARM,Arm Holdings plc,117679104000,-0.38
-ASML,ASML Holding N.V.,261914443776,-0.99
-AVGO,Broadcom Inc.,898871787520,-0.68
-AXON,"Axon Enterprise, Inc.",47575306240,1.44
-AZN,AstraZeneca PLC,222326800384,2.55
-BIIB,Biogen Inc.,17589884928,0.88
-BKNG,Booking Holdings Inc.,160241680384,0.39
-BKR,Baker Hughes Company,35587739648,-0.8
-CCEP,Coca-Cola Europacific Partners PLC,40850440192,1.03
-CDNS,"Cadence Design Systems, Inc.",82903171072,5.77
-CDW,CDW Corporation,21077450752,0.86
-CEG,Constellation Energy Corporation,70949052416,0.73
-CHTR,"Charter Communications, Inc.",54226821120,2.51
-CMCSA,Comcast Corporation,126721777664,0.5
-COST,Costco Wholesale Corporation,440000446464,1.34
-CPRT,"Copart, Inc.",58458284032,1.17
-CRWD,"CrowdStrike Holdings, Inc.",106830782464,1.87
-CSCO,"Cisco Systems, Inc.",228115136512,0.88
-CSGP,"CoStar Group, Inc.",34879799296,1.17
-CSX,CSX Corporation,52693327872,0.65
-CTAS,Cintas Corporation,84496465920,0.47
-CTSH,Cognizant Technology Solutions Corporation,36127502336,0.98
-DASH,"DoorDash, Inc.",80334954496,1.78
-DDOG,"Datadog, Inc.",35331121152,0.56
-DXCM,"DexCom, Inc.",27957231616,0.17
-EA,Electronic Arts Inc.,38042411008,-0.51
-EXC,Exelon Corporation,47296946176,0.8
-FANG,"Diamondback Energy, Inc.",40186441728,-0.85
-FAST,Fastenal Company,46050291712,0.21
-FTNT,"Fortinet, Inc.",80134782976,1.53
-GEHC,GE HealthCare Technologies Inc.,31174529024,0.03
-GFS,GlobalFoundries Inc.,19158437888,-1.65
-GILD,"Gilead Sciences, Inc.",129741438976,-2.0
-GOOG,Alphabet Inc.,1954508308480,-0.22
-GOOGL,Alphabet Inc.,1953359462400,-0.28
-HON,Honeywell International Inc.,136042430464,5.4
-IDXX,"IDEXX Laboratories, Inc.",35411611648,0.69
-INTC,Intel Corporation,88723079168,-0.83
-INTU,Intuit Inc.,174209056768,0.8
-ISRG,"Intuitive Surgical, Inc.",184545837056,0.17
-KDP,Keurig Dr Pepper Inc.,46490501120,0.56
-KHC,The Kraft Heinz Company,34453458944,0.21
-KLAC,KLA Corporation,91419615232,-0.83
-LIN,Linde plc,213084684288,0.58
-LRCX,Lam Research Corporation,90689609728,-0.94
-LULU,lululemon athletica inc.,32725196800,1.02
-MAR,"Marriott International, Inc.",65998643200,1.16
-MCHP,Microchip Technology Incorporated,24696647680,-2.32
-MDB,"MongoDB, Inc.",14182678528,0.1
-MDLZ,"Mondelez International, Inc.",85052203008,0.84
-MELI,"MercadoLibre, Inc.",115633676288,3.28
-META,"Meta Platforms, Inc.",1399656153088,0.85
-MNST,Monster Beverage Corporation,57659670528,1.3
-MRVL,"Marvell Technology, Inc.",50820636672,-0.03
-MSFT,Microsoft Corporation,2929285398528,0.74
-MSTR,Strategy Incorporated,102568853504,3.3
-MU,"Micron Technology, Inc.",85918785536,-2.14
-NFLX,"Netflix, Inc.",479039750144,1.37
-NVDA,NVIDIA Corporation,2660087889920,0.27
-NXPI,NXP Semiconductors N.V.,46316081152,-6.94
-ODFL,"Old Dominion Freight Line, Inc.",31747799040,0.44
-ON,ON Semiconductor Corporation,16400824320,-2.95
-ORLY,"O'Reilly Automotive, Inc.",79774998528,2.12
-PANW,"Palo Alto Networks, Inc.",123580956672,2.81
-PAYX,"Paychex, Inc.",52735565824,1.56
-PCAR,PACCAR Inc,47396380672,-1.9
-PDD,PDD Holdings Inc.,144640409600,1.03
-PEP,"PepsiCo, Inc.",184149737472,0.41
-PLTR,Palantir Technologies Inc.,273912823808,1.25
-PYPL,"PayPal Holdings, Inc.",64820838400,2.14
-QCOM,QUALCOMM Incorporated,162449293312,-0.5
-REGN,"Regeneron Pharmaceuticals, Inc.",62196084736,-6.87
-ROP,"Roper Technologies, Inc.",59724312576,0.76
-ROST,"Ross Stores, Inc.",46293245952,1.01
-SBUX,Starbucks Corporation,96383655936,1.13
-SNPS,"Synopsys, Inc.",71244259328,3.78
-TEAM,Atlassian Corporation,59864379392,-0.58
-TMUS,"T-Mobile US, Inc.",274313363456,2.04
-TSLA,"Tesla, Inc.",940616974336,2.15
-TTD,"The Trade Desk, Inc.",26874075136,0.5
-TTWO,"Take-Two Interactive Software, Inc.",40719392768,2.29
-TXN,Texas Instruments Incorporated,146055053312,-1.03
-VRSK,"Verisk Analytics, Inc.",40915718144,1.37
-VRTX,Vertex Pharmaceuticals Incorporated,129440276480,1.41
-WBD,"Warner Bros. Discovery, Inc.",21695578112,0.8
-WDAY,"Workday, Inc.",65102442496,1.49
-XEL,Xcel Energy Inc.,40759701504,1.57
-ZS,"Zscaler, Inc.",34635190272,1.81
+ABNB,"Airbnb, Inc.",82391769088,5.08
+ADBE,Adobe Inc.,168242446336,2.99
+ADI,"Analog Devices, Inc.",111202779136,8.05
+ADP,"Automatic Data Processing, Inc.",124882214912,-0.05
+ADSK,"Autodesk, Inc.",63110561792,2.61
+AEP,"American Electric Power Company, Inc.",54365024256,-2.78
+AMAT,"Applied Materials, Inc.",137534078976,8.8
+AMD,"Advanced Micro Devices, Inc.",176570466304,5.91
+AMGN,Amgen Inc.,147933675520,3.44
+AMZN,"Amazon.com, Inc.",2214653067264,8.05
+ANSS,"ANSYS, Inc.",30265995264,3.15
+APP,AppLovin Corporation,118464266240,6.52
+ARM,Arm Holdings plc,131760545792,7.97
+ASML,ASML Holding N.V.,294058557440,5.9
+AVGO,Broadcom Inc.,1031043547136,5.31
+AXON,"Axon Enterprise, Inc.",53476970496,0.34
+AZN,AstraZeneca PLC,216412749824,1.8
+BIIB,Biogen Inc.,18184857600,5.02
+BKNG,Booking Holdings Inc.,168483913728,2.07
+BKR,Baker Hughes Company,37187801088,2.86
+CCEP,Coca-Cola Europacific Partners PLC,39956275200,-2.73
+CDNS,"Cadence Design Systems, Inc.",85198659584,2.04
+CDW,CDW Corporation,24998176768,6.02
+CEG,Constellation Energy Corporation,91020238848,7.04
+CHTR,"Charter Communications, Inc.",56464224256,0.13
+CMCSA,Comcast Corporation,129204690944,1.04
+COST,Costco Wholesale Corporation,448266272768,0.22
+CPRT,"Copart, Inc.",59936411648,0.85
+CRWD,"CrowdStrike Holdings, Inc.",106254565376,3.9
+CSCO,"Cisco Systems, Inc.",244605157376,2.87
+CSGP,"CoStar Group, Inc.",31637305344,0.64
+CSX,CSX Corporation,57004597248,5.58
+CTAS,Cintas Corporation,87092822016,0.44
+CTSH,Cognizant Technology Solutions Corporation,40164917248,2.93
+DASH,"DoorDash, Inc.",81316282368,4.56
+DDOG,"Datadog, Inc.",39005892608,4.7
+DXCM,"DexCom, Inc.",33219305472,0.09
+EA,Electronic Arts Inc.,38903750656,-2.63
+EXC,Exelon Corporation,44106801152,-3.42
+FANG,"Diamondback Energy, Inc.",41936240640,3.42
+FAST,Fastenal Company,45780688896,1.54
+FTNT,"Fortinet, Inc.",77839392768,3.94
+GEHC,GE HealthCare Technologies Inc.,33885777920,5.92
+GFS,GLOBALFOUNDRIES Inc.,21568059392,6.87
+GOOG,Alphabet Inc.,1927949844480,3.45
+GOOGL,Alphabet Inc.,1929555607552,3.67
+HON,Honeywell International Inc.,139786174464,2.01
+IDXX,"IDEXX Laboratories, Inc.",40853520384,3.31
+INTU,Intuit Inc.,186328055808,1.93
+ISRG,"Intuitive Surgical, Inc.",200212283392,4.12
+KDP,Keurig Dr Pepper Inc.,45207351296,-0.76
+KHC,The Kraft Heinz Company,33038518272,-0.55
+KLAC,KLA Corporation,100792770560,8.75
+LIN,Linde plc,214099394560,0.51
+LRCX,Lam Research Corporation,105329139712,9.33
+LULU,lululemon athletica inc.,36177166336,7.62
+MAR,"Marriott International, Inc.",74349076480,5.19
+MCHP,Microchip Technology Incorporated,33366292480,12.18
+MDB,"MongoDB, Inc.",15412671488,6.45
+MDLZ,"Mondelez International, Inc.",84856029184,-1.26
+MELI,"MercadoLibre, Inc.",125909270528,1.37
+META,"Meta Platforms, Inc.",1606103859200,7.79
+MNST,Monster Beverage Corporation,58983165952,-0.64
+MRVL,"Marvell Technology, Inc.",55829393408,8.35
+MSFT,Microsoft Corporation,3324060106752,1.96
+MSTR,Strategy Incorporated,111665987584,-1.84
+MU,"Micron Technology, Inc.",104079294464,8.49
+NFLX,"Netflix, Inc.",474826440704,-2.17
+NVDA,NVIDIA Corporation,2996076019712,5.27
+NXPI,NXP Semiconductors N.V.,52482408448,8.32
+ODFL,"Old Dominion Freight Line, Inc.",37324218368,11.59
+ON,ON Semiconductor Corporation,18848702464,10.13
+ORLY,"O'Reilly Automotive, Inc.",75770945536,-2.23
+PANW,"Palo Alto Networks, Inc.",127503900672,3.02
+PAYX,"Paychex, Inc.",54552731648,-0.13
+PCAR,PACCAR Inc,50270076928,5.65
+PDD,PDD Holdings Inc.,166524960768,7.1
+PEP,"PepsiCo, Inc.",179817119744,0.53
+PLTR,Palantir Technologies Inc.,278894149632,0.78
+PYPL,"PayPal Holdings, Inc.",70173114368,2.7
+REGN,"Regeneron Pharmaceuticals, Inc.",62001332224,8.81
+ROP,"Roper Technologies, Inc.",61684580352,0.57
+ROST,"Ross Stores, Inc.",48578641920,3.82
+SBUX,Starbucks Corporation,98128027648,7.64
+SNPS,"Synopsys, Inc.",78191337472,4.71
+TEAM,Atlassian Corporation,58571993088,7.47
+TMUS,"T-Mobile US, Inc.",270327939072,-2.35
+TTD,"The Trade Desk, Inc.",39121518592,12.05
+TTWO,"Take-Two Interactive Software, Inc.",39891628032,-0.18
+TXN,Texas Instruments Incorporated,170638295040,9.02
+VRSK,"Verisk Analytics, Inc.",42231898112,-2.5
+VRTX,Vertex Pharmaceuticals Incorporated,113113939968,3.65
+WDAY,"Workday, Inc.",71061946368,2.53
+XEL,Xcel Energy Inc.,39456223232,-3.15
+ZS,"Zscaler, Inc.",37223739392,3.26

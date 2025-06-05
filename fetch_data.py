@@ -19,7 +19,7 @@ nasdaq_100_tickers = [
 def fetch_nasdaq_data(tickers):
     data = []
     tickers_str = ' '.join(tickers)
-    stocks = yf.download(tickers_str, period="2d", group_by='ticker', threads=True)
+    stocks = yf.download(tickers_str, period="2d", group_by='ticker', threads=True, auto_adjust=False)
 
     for ticker in tickers:
         try:
@@ -49,4 +49,3 @@ def fetch_nasdaq_data(tickers):
 if __name__ == '__main__':
     nasdaq_df = fetch_nasdaq_data(nasdaq_100_tickers)
     nasdaq_df.to_csv('nasdaq100_data.csv', index=False)
-
