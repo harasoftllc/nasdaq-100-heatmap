@@ -1,6 +1,6 @@
 # NASDAQ-100 Daily Price Change Heatmap
 
-This project provides a dynamic visualization of daily percentage price changes for NASDAQ-100 companies using a treemap heatmap. Inspired by FinViz's S&P 500 heatmap, it serves as an educational tool for exploring financial data fetching, processing, and interactive visualization. Test change.
+This project provides a dynamic visualization of daily percentage price changes for NASDAQ-100 companies using a treemap heatmap. Inspired by FinViz's S&P 500 heatmap, it serves as an educational tool for exploring financial data fetching, processing, and interactive visualization.
 
 ## Features
 
