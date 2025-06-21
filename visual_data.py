@@ -163,4 +163,4 @@ fig.add_annotation(
     opacity=0.7
 )
 
-fig.write_html('nasdaq_heatmap.html', auto_open=True)
+fig.write_html('app/index.html', auto_open=True)
