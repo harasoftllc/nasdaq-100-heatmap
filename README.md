@@ -48,7 +48,6 @@ pip install pandas yfinance plotly squarify
 Run the scripts to fetch data and generate the visualization:
 
 ```bash
-python fetch_data.py
 python visual_data.py
 ```
 
